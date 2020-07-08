@@ -1,0 +1,6 @@
+docs
+gen-docs
+test
+sample
+.nyc_output
+node_modules/*

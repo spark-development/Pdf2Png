@@ -1,17 +1,35 @@
 {
-	"name":			"pdf2png",
-	"version":		"1.0.5",
-	"description":	"Takes a PDF-document and converts and delivers a PNG",
-	"engine":		"node >= 0.6.0",
-	"main":			"./lib/pdf2png.js",
-	"dependencies": {
-        "tmp":			"0.0.23",
-        "filesource":	"latest"
-	},
-	"repository" :
-	{ 
-		"type" :	"git",
-		"url" :		"git@github.com:thnew/Pdf2Png.git"
-	},
-	"homepage": "https://github.com/thnew/Pdf2Png"
+  "name": "@sparkdev/pdf2png",
+  "version": "1.0.0",
+  "description": "Takes a PDF-document and converts and delivers a PNG",
+  "engine": "node >= 0.6.0",
+  "main": "./lib/pdf2png.js",
+  "scripts": {
+    "lint": "eslint \"./**/*.js\"",
+    "lint:fix": "eslint --fix \"./**/*.js\""
+  },
+  "dependencies": {
+    "tmp": "0.0.23",
+    "gs": "^0.0.2",
+    "filesource": "latest"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "debug": "^4.1.1",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:spark-development/Pdf2Png.git"
+  },
+  "homepage": "https://github.com/spark-development/Pdf2Png",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix"
+    }
+  }
 }
