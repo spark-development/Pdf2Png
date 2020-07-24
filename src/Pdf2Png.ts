@@ -1,5 +1,6 @@
 import {tmpdir} from "os";
 import * as path from "path";
+import * as fs from "fs";
 import {generate} from "randomstring";
 import GhostScript from "./GhostScript";
 
@@ -14,6 +15,7 @@ export interface IPDF2PNGOptions {
   type: SupportedExtensions,
   bitmapColor: boolean,
   quality: number,
+  returnFilePath: boolean
 }
 
 export enum SupportedExtensions {
@@ -27,7 +29,8 @@ export const defaultConfiguration: IPDF2PNGOptions = {
   useLocalGhostScript: true,
   type: SupportedExtensions.PNG,
   quality: 100,
-  bitmapColor: false
+  bitmapColor: false,
+  returnFilePath: false
 }
 
 export function getTemporaryFile(extension: SupportedExtensions | string = SupportedExtensions.PNG): string {
@@ -53,14 +56,14 @@ export function pdf2png(filePath: string, options: IPDF2PNGOptions = defaultConf
 
     const tmpFile = getTemporaryFile(options.type);
 
-    let device = "png16m";
+    let device = options.bitmapColor ? "png16m" : "pnggray";
 
     switch (options.type) {
       case SupportedExtensions.BMP:
-        device = options.bitmapColor ? "bmp32b" : "bmpmono";
+        device = options.bitmapColor ? "bmp32b" : "bmpgrey";
         break;
       case SupportedExtensions.JPG:
-        device = "jpeg";
+        device = options.bitmapColor ? "jpeg" : "jpeggray";
         break;
     }
 
@@ -79,5 +82,19 @@ export function pdf2png(filePath: string, options: IPDF2PNGOptions = defaultConf
       .input(filePath)
       .option("-dFirstPage=1")
       .option("-dLastPage=1")
+      .exec()
+      .then(() => {
+        if (options.returnFilePath) {
+          resolve(tmpFile);
+          return;
+        }
+
+        const img = fs.readFileSync(tmpFile);
+        fs.unlinkSync(tmpFile);
+        resolve(img);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 }

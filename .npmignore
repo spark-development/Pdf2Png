@@ -1,0 +1,10 @@
+src
+tsconfig.json
+typedoc.json
+.babelrc
+.eslintrc.json
+.eslintignore
+test
+.git*
+.editorconfig
+.idea
