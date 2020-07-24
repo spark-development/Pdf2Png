@@ -1,6 +1,6 @@
 {
   "name": "@sparkdev/pdf2png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Takes a PDF-document and converts and delivers a PNG",
   "engine": "node >= 0.6.0",
   "main": "./lib/pdf2png.js",
@@ -9,9 +9,7 @@
     "lint:fix": "eslint --fix \"./**/*.js\""
   },
   "dependencies": {
-    "tmp": "0.0.23",
-    "gs": "^0.0.2",
-    "filesource": "latest"
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
