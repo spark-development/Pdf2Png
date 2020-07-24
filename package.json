@@ -1,24 +1,43 @@
 {
   "name": "@sparkdev/pdf2png",
-  "version": "1.0.1",
-  "description": "Takes a PDF-document and converts and delivers a PNG",
-  "engine": "node >= 0.6.0",
-  "main": "./lib/pdf2png.js",
+  "version": "1.1.0",
+  "description": "Takes a PDF-document and converts and delivers an image from it.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint \"./**/*.js\"",
-    "lint:fix": "eslint --fix \"./**/*.js\""
+    "check-types": "tsc",
+    "compile": "babel --extensions '.ts' src -d dist",
+    "compile:cleanup": "rm -rf ./dist",
+    "lint": "eslint './src/**/*.ts'",
+    "lint:fix": "eslint --fix './src/**/*.ts'",
+    "docs:html": "typedoc --out docs/html src",
+    "docs:markdown": "typedoc --theme markdown --out docs/md src"
   },
   "dependencies": {
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/node": "^14.0.25",
+    "@types/randomstring": "^1.1.6",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "babel-eslint": "^10.1.0",
     "debug": "^4.1.1",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "typedoc": "^0.17.8",
+    "typedoc-plugin-markdown": "^2.3.1",
+    "typescript": "^3.9.7"
   },
   "repository": {
     "type": "git",
