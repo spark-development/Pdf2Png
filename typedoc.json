@@ -1,0 +1,17 @@
+{
+  "target": "es6",
+  "module": "commonjs",
+  "rootDir": "src",
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ],
+  "out": "./docs",
+  "name": "@spark/pdf2png",
+  "version": true,
+  "ignoreCompilerErrors": false,
+  "mode": "file",
+  "hideGenerator": true,
+  "excludePrivate": true
+}
